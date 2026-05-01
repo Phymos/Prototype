@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,9 +14,12 @@ public class PlayerCombat : MonoBehaviour
     public float heavyAttackDamage = 40f;
 
     public bool isBlocking = false;
+    public bool isArmed = false;
 
     void OnLightAttack(InputAction.CallbackContext context)
     {
+        if (!isArmed) return;
+
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider enemy in hitEnemies)
@@ -29,6 +33,8 @@ public class PlayerCombat : MonoBehaviour
 
     void OnHeavyAttack(InputAction.CallbackContext context)
     {
+        if (!isArmed) return;
+        
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider enemy in hitEnemies)
@@ -42,6 +48,8 @@ public class PlayerCombat : MonoBehaviour
 
     void OnBlock(InputAction.CallbackContext context)
     {
+        if (!isArmed) return;
+        
         if (context.performed)
             isBlocking = true;
         else if (context.canceled)
@@ -50,7 +58,17 @@ public class PlayerCombat : MonoBehaviour
 
     void OnParry(InputAction.CallbackContext context)
     {
+        if (!isArmed) return;
+        
         // Implement parry logic here
+    }
+
+    void OnDrawSword()
+    {
+        if (isArmed)
+            isArmed = false;
+        else
+            isArmed = true;
     }
 
     void OnDrawGizmosSelected()

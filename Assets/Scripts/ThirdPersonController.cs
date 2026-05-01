@@ -8,8 +8,9 @@ public class ThirdPersonController : MonoBehaviour
     public Transform cam;
 
     [Header("Settings")]
-    float speed = 5f;
-    public float moveSpeed = 5f;
+    public float currentSpeed = 3f;
+    public float walkSpeed = 3f;
+    public float runSpeed = 6f;
     public float jumpHeight = 2f;
     public float turnSmoothTime = 0.1f;
     public float rollSpeed = 10f;
@@ -22,6 +23,8 @@ public class ThirdPersonController : MonoBehaviour
     float turnSmoothVelocity;
     public bool isMoving;
     public bool isRunning;
+
+    public Vector3 currentVelocity => controller.velocity;
 
     //things to add:
     // crouch
@@ -39,6 +42,7 @@ public class ThirdPersonController : MonoBehaviour
             verticalVelocity += gravity * Time.deltaTime;
         }
         
+        
 
         Vector3 horizontalMove = new Vector3(input.x, 0, input.y);
         horizontalMove = Quaternion.Euler(0, cam.eulerAngles.y, 0) * horizontalMove;
@@ -51,7 +55,7 @@ public class ThirdPersonController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
-        controller.Move(horizontalMove * speed * Time.deltaTime + verticalMove * Time.deltaTime);
+        controller.Move(horizontalMove * currentSpeed * Time.deltaTime + verticalMove * Time.deltaTime);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -77,7 +81,7 @@ public class ThirdPersonController : MonoBehaviour
     public void OnRoll(InputAction.CallbackContext context)
     {
         // Implement roll logic here
-        speed = rollSpeed;
+        currentSpeed = rollSpeed;
         //handle animations, perhaps invinciblity, and reset speed after animation
         //if (animationFinished)
         //    speed = moveSpeed;
@@ -85,9 +89,23 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnSidestep(InputAction.CallbackContext context)
     {
-        speed = sidestepSpeed;
+        currentSpeed = sidestepSpeed;
         //handle animations, perhaps invinciblity, and reset speed after animation
         //if (animationFinished)
         //    speed = moveSpeed;
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            currentSpeed = runSpeed;
+            isRunning = true;
+        }
+        else if (context.canceled)
+        {
+            currentSpeed = walkSpeed;
+            isRunning = false;
+        }
     }
 }
