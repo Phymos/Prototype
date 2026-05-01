@@ -63,7 +63,7 @@ public class PlayerCombat : MonoBehaviour
         // Implement parry logic here
     }
 
-    void OnDrawSword()
+    public void OnDrawSword()
     {
         if (isArmed)
             isArmed = false;
