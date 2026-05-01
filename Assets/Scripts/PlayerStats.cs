@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
@@ -10,6 +11,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float armor;
 
     public event Action OnDeath;
+
+    
 
     void Start()
     {
@@ -31,6 +34,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if (GetComponent<PlayerCombat>().isBlocking)
+            damage *= 0.5f;
+
         currentHealth -= damage;
         if (currentHealth <= 0)
         {

@@ -12,7 +12,7 @@ public class PlayerCombat : MonoBehaviour
     public float lightAttackDamage = 20f;
     public float heavyAttackDamage = 40f;
 
-    private bool isBlocking = false;
+    public bool isBlocking = false;
 
     void OnLightAttack(InputAction.CallbackContext context)
     {
