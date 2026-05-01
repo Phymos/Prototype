@@ -23,6 +23,7 @@ public class ThirdPersonController : MonoBehaviour
     float turnSmoothVelocity;
     public bool isMoving;
     public bool isRunning;
+    public bool isCrouching;
 
     public Vector3 currentVelocity => controller.velocity;
 
@@ -73,7 +74,13 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
-        // Implement crouch logic here
+        if (context.performed)
+        {
+            isCrouching = true;
+        }else if (context.canceled)
+        {
+            isCrouching = false;
+        }
         // handle animation, adjust character controller height, and reset the height after standing up
         // also maybe reduce speed while crouching
     }
