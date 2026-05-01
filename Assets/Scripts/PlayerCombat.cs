@@ -1,33 +1,61 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
     [Header("References")]
-    public CharacterController controller;
+    public Transform attackPoint;
+    public LayerMask enemyLayers;
 
+    [Header("Attack Settings")]
+    public float attackRange = 0.5f;
+    public float lightAttackDamage = 20f;
+    public float heavyAttackDamage = 40f;
 
-    void Update()
+    private bool isBlocking = false;
+
+    void OnLightAttack(InputAction.CallbackContext context)
     {
-        
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider enemy in hitEnemies)
+        {
+            if (enemy.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(lightAttackDamage);
+            }
+        }
     }
 
-    void OnLightAttack()
+    void OnHeavyAttack(InputAction.CallbackContext context)
     {
-        // Implement light attack logic here
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider enemy in hitEnemies)
+        {
+            if (enemy.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(heavyAttackDamage);
+            }
+        }
     }
 
-    void OnHeavyAttack()
+    void OnBlock(InputAction.CallbackContext context)
     {
-        // Implement heavy attack logic here
+        if (context.performed)
+            isBlocking = true;
+        else if (context.canceled)
+            isBlocking = false;
     }
 
-    void OnBlock()
-    {
-        // Implement block logic here
-    }
-
-    void OnParry()
+    void OnParry(InputAction.CallbackContext context)
     {
         // Implement parry logic here
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
