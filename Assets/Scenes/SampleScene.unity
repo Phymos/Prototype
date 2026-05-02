@@ -237,7 +237,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -1239,12 +1239,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1244263619}
     m_Modifications:
     - target: {fileID: 1709437085358321701, guid: 41dd6f1b95892df43a67d31506651c78, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1291
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709437085358321701, guid: 41dd6f1b95892df43a67d31506651c78, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1523
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709437085358321701, guid: 41dd6f1b95892df43a67d31506651c78, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1709437085358321701, guid: 41dd6f1b95892df43a67d31506651c78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.906
+      value: -0.912
       objectReference: {fileID: 0}
     - target: {fileID: 1709437085358321701, guid: 41dd6f1b95892df43a67d31506651c78, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1397,13 +1405,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.8
-  m_Radius: 0.25
+  m_Height: 1.75
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.03, z: 0}
 --- !u!114 &1244263623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,15 +1426,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ThirdPersonController
   controller: {fileID: 1244263622}
   cam: {fileID: 330585546}
-  currentSpeed: 3
-  walkSpeed: 4
-  runSpeed: 8
+  currentSpeed: 2
+  walkSpeed: 2
+  runSpeed: 6
   jumpHeight: 2
   turnSmoothTime: 0.1
-  rollSpeed: 10
   sidestepSpeed: 8
+  rollCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3
+      value: 6.5
+      inSlope: -3.144652
+      outSlope: -3.144652
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.93
+      value: 3
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isMoving: 0
   isRunning: 0
+  isCrouching: 0
 --- !u!114 &1244263624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1485,7 +1526,19 @@ MonoBehaviour:
     m_ActionId: 9e23ed42-297c-467e-8e80-7f5811949bbf
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1244263623}
+        m_TargetAssemblyTypeName: ThirdPersonController, Assembly-CSharp
+        m_MethodName: OnCrouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 83ba14aa-b1ea-4ad8-a655-b40422378a7a
     m_ActionName: 'Player/Crouch[/Keyboard/ctrl]'
   - m_PersistentCalls:
