@@ -23,18 +23,29 @@ public class PlayerCombat : MonoBehaviour
     private float lastAttackTime = 0f;
     private int comboIndex = 0;
     public static event Action<int> OnLightAttacking;
+    private bool comboInputReceived = false;
 
     void Update()
     {
         if (Time.time - lastComboTime > comboTimer)
             comboIndex = 0;
+        
+        if (comboInputReceived && Time.time - lastAttackTime >= attackTimer)
+        {
+            comboInputReceived = false;
+            PerformLightAttack();
+        }
     }
 
     public void OnLightAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         if (!isArmed) return;
-        if (Time.time - lastAttackTime < attackTimer) return;
+        if (Time.time - lastAttackTime < attackTimer)
+        {
+            comboInputReceived = true;
+            return;
+        }
 
         lastAttackTime = Time.time;
         lastComboTime = Time.time;
@@ -100,5 +111,23 @@ public class PlayerCombat : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    void PerformLightAttack()
+    {
+        lastAttackTime = Time.time;
+        lastComboTime = Time.time;
+        comboIndex++;
+
+        if (comboIndex > 3) comboIndex = 1;
+
+        OnLightAttacking?.Invoke(comboIndex);
+
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider enemy in hitEnemies)
+        {
+            if (enemy.TryGetComponent(out IDamageable damageable))
+                damageable.TakeDamage(lightAttackDamage);
+        }
     }
 }

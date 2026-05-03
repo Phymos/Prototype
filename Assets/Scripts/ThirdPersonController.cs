@@ -28,7 +28,6 @@ public class ThirdPersonController : MonoBehaviour
     public bool isMoving;
     public bool isRunning;
     public bool isCrouching;
-    private Animator animator;
 
 
     public Vector3 currentVelocity => controller.velocity;
@@ -40,8 +39,6 @@ public class ThirdPersonController : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
-
         Keyframe rollLastFrame = rollCurve[rollCurve.length - 1];
         rollTimer = rollLastFrame.time;
     }
