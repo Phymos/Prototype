@@ -44,7 +44,7 @@ public class PlayerAnimator : MonoBehaviour
         ThirdPersonController.OnJumping -= PlayJump;
     }
 
-    void PlayRoll() => animator.SetTrigger("Roll");
+    void PlayRoll() => animator.Play("Roll");
 
     void PlayJump() => animator.SetTrigger("Jump");
 

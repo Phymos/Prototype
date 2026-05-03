@@ -26,7 +26,6 @@ public class PlayerCombat : MonoBehaviour
     private float lastAttackTime = -100f;
     private int comboIndex = 0;
     public static event Action<int> OnLightAttacking;
-    private bool comboInputReceived = false;
 
     void Update()
     {

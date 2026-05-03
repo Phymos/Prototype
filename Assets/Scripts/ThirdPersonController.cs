@@ -119,7 +119,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnRoll(InputAction.CallbackContext context)
     {
-        if (context.performed && controller.isGrounded)
+        if (context.performed && controller.isGrounded && isRolling == false)
         {
             StartCoroutine(RollCoroutine());
         }
@@ -164,10 +164,19 @@ public class ThirdPersonController : MonoBehaviour
                 verticalVelocity = -2f;
             }
 
-            float rollSpeed = rollCurve.Evaluate(timer);
-            Vector3 rollDirection = transform.forward;
+            Vector3 moveInput = new Vector3(input.x, 0, input.y);
+            if (moveInput.magnitude > 0.1f)
+            {
+                Vector3 targetDirection = Quaternion.Euler(0, cam.eulerAngles.y, 0) * moveInput;
+                float targetAngle = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
 
-            Vector3 moveDelta = (rollDirection * rollSpeed) + (Vector3.up * verticalVelocity);
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+
+            float rollSpeed = rollCurve.Evaluate(timer);
+        
+            Vector3 moveDelta = (transform.forward * rollSpeed) + (Vector3.up * verticalVelocity);
             controller.Move(moveDelta * Time.deltaTime);
 
             timer += Time.deltaTime;
