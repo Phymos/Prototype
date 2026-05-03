@@ -1426,10 +1426,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ThirdPersonController
   controller: {fileID: 1244263622}
   cam: {fileID: 330585546}
-  currentSpeed: 2
-  walkSpeed: 2
+  currentSpeed: 3
+  walkSpeed: 3
   runSpeed: 6
-  jumpHeight: 2
+  jumpHeight: 1
   turnSmoothTime: 0.1
   sidestepSpeed: 8
   rollCurve:

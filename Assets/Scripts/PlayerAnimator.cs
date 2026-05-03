@@ -20,7 +20,7 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("VelocityZ", localVelocity.z);
 
         animator.SetFloat("Speed", movement.currentVelocity.magnitude / movement.runSpeed);
-        //animator.SetBool("OnAir", movement.onAir);
+        animator.SetBool("OnAir", movement.onAir);
 
         animator.SetBool("IsGrounded", movement.controller.isGrounded);
         animator.SetBool("IsBlocking", combat.isBlocking);
