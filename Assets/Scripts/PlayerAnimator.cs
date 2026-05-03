@@ -20,6 +20,7 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("VelocityZ", localVelocity.z);
 
         animator.SetFloat("Speed", movement.currentVelocity.magnitude / movement.runSpeed);
+        animator.SetBool("onAir", movement.onAir);
 
         animator.SetBool("IsGrounded", movement.controller.isGrounded);
         animator.SetBool("IsBlocking", combat.isBlocking);
@@ -33,16 +34,19 @@ public class PlayerAnimator : MonoBehaviour
     {
         ThirdPersonController.OnRolling += PlayRoll;
         PlayerCombat.OnLightAttacking += PlayAttack;
+        ThirdPersonController.OnJumping += PlayJump;
     }
 
     void OnDisable()
     {
         ThirdPersonController.OnRolling -= PlayRoll;
         PlayerCombat.OnLightAttacking -= PlayAttack;
-
+        ThirdPersonController.OnJumping -= PlayJump;
     }
 
     void PlayRoll() => animator.SetTrigger("Roll");
+
+    void PlayJump() => animator.SetTrigger("Jump");
 
     void PlayAttack(int comboIndex)
     {

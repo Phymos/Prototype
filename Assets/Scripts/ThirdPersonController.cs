@@ -18,6 +18,9 @@ public class ThirdPersonController : MonoBehaviour
     public float sidestepSpeed = 8f;
     [SerializeField] AnimationCurve rollCurve;
 
+    public static event Action OnJumping;
+    public bool onAir;
+    private bool isJumping;
     public static event Action OnRolling;
     bool isRolling;
     float rollTimer;
@@ -57,6 +60,14 @@ public class ThirdPersonController : MonoBehaviour
             verticalVelocity += gravity * Time.deltaTime;
         }
 
+        if (!controller.isGrounded && !isJumping)
+        {
+            onAir = true;
+        }else
+        {
+            onAir = false;
+        }
+
         Vector3 horizontalMove = new Vector3(input.x, 0, input.y);
         horizontalMove = Quaternion.Euler(0, cam.eulerAngles.y, 0) * horizontalMove;
 
@@ -80,6 +91,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (context.performed && controller.isGrounded && !isCrouching)
         {
+            OnJumping?.Invoke();
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
