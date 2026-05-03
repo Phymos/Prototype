@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,7 +18,7 @@ public class ThirdPersonController : MonoBehaviour
     public float sidestepSpeed = 8f;
     [SerializeField] AnimationCurve rollCurve;
 
-    
+    public static event Action OnRolling;
     bool isRolling;
     float rollTimer;
     private Vector2 input;
@@ -28,6 +29,7 @@ public class ThirdPersonController : MonoBehaviour
     public bool isRunning;
     public bool isCrouching;
     private Animator animator;
+
 
     public Vector3 currentVelocity => controller.velocity;
 
@@ -134,8 +136,8 @@ public class ThirdPersonController : MonoBehaviour
     }
 
     IEnumerator RollCoroutine()
-    {        
-        animator.SetTrigger("Roll");
+    {   
+        OnRolling?.Invoke();
         isRolling = true;
         float timer = 0f;
         

@@ -1659,6 +1659,8 @@ MonoBehaviour:
   heavyAttackDamage: 40
   isBlocking: 0
   isArmed: 0
+  attackTimer: 0.75
+  comboTimer: 1
 --- !u!114 &1244263626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1724,31 +1726,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.109642595
+      value: 0.07385753
       objectReference: {fileID: 0}
     - target: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0388316
+      value: -0.021988498
       objectReference: {fileID: 0}
     - target: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.029939372
+      value: 0.0054343157
       objectReference: {fileID: 0}
     - target: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.85678375
+      value: 0.92386997
       objectReference: {fileID: 0}
     - target: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.24555781
+      value: -0.06651013
       objectReference: {fileID: 0}
     - target: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.12283819
+      value: 0.07214634
       objectReference: {fileID: 0}
     - target: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.43650174
+      value: 0.36991292
       objectReference: {fileID: 0}
     - target: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,13 +13,37 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
     public float lightAttackDamage = 20f;
     public float heavyAttackDamage = 40f;
-
+    
     public bool isBlocking = false;
     public bool isArmed = false;
 
-    void OnLightAttack(InputAction.CallbackContext context)
+    [SerializeField] float attackTimer = 0.5f;
+    [SerializeField] float comboTimer = 1f;
+    private float lastComboTime = 0f;
+    private float lastAttackTime = 0f;
+    private int comboIndex = 0;
+    public static event Action<int> OnLightAttacking;
+
+    void Update()
     {
+        if (Time.time - lastComboTime > comboTimer)
+            comboIndex = 0;
+    }
+
+    public void OnLightAttack(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
         if (!isArmed) return;
+        if (Time.time - lastAttackTime < attackTimer) return;
+
+        lastAttackTime = Time.time;
+        lastComboTime = Time.time;
+        comboIndex++;
+
+        if (comboIndex > 3) comboIndex = 1;
+
+        OnLightAttacking?.Invoke(comboIndex);
+
 
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 

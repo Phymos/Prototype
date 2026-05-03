@@ -27,4 +27,26 @@ public class PlayerAnimator : MonoBehaviour
 
         animator.SetLayerWeight(1, movement.isCrouching ? 1 : 0);
     }
+
+
+    void OnEnable()
+    {
+        ThirdPersonController.OnRolling += PlayRoll;
+        PlayerCombat.OnLightAttacking += PlayAttack;
+    }
+
+    void OnDisable()
+    {
+        ThirdPersonController.OnRolling -= PlayRoll;
+        PlayerCombat.OnLightAttacking -= PlayAttack;
+
+    }
+
+    void PlayRoll() => animator.SetTrigger("Roll");
+
+    void PlayAttack(int comboIndex)
+    {
+        animator.SetInteger("ComboIndex", comboIndex);
+        animator.SetTrigger("LightAttack");
+    }
 }
