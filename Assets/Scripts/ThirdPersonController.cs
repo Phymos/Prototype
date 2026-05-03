@@ -63,9 +63,12 @@ public class ThirdPersonController : MonoBehaviour
         if (!controller.isGrounded && !isJumping)
         {
             onAir = true;
-        }else
+        }
+        
+        if (controller.isGrounded)
         {
             onAir = false;
+            isJumping = false;
         }
 
         Vector3 horizontalMove = new Vector3(input.x, 0, input.y);

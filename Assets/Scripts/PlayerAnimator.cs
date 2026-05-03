@@ -20,11 +20,11 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("VelocityZ", localVelocity.z);
 
         animator.SetFloat("Speed", movement.currentVelocity.magnitude / movement.runSpeed);
-        animator.SetBool("onAir", movement.onAir);
+        //animator.SetBool("OnAir", movement.onAir);
 
         animator.SetBool("IsGrounded", movement.controller.isGrounded);
         animator.SetBool("IsBlocking", combat.isBlocking);
-        animator.SetBool("isArmed", combat.isArmed);
+        animator.SetBool("IsArmed", combat.isArmed);
 
         animator.SetLayerWeight(1, movement.isCrouching ? 1 : 0);
     }

@@ -17,10 +17,13 @@ public class PlayerCombat : MonoBehaviour
     public bool isBlocking = false;
     public bool isArmed = false;
 
+
+    public float attackBufferTime = 0.5f;
+    private float lastInputTime = -100f;
     [SerializeField] float attackTimer = 0.5f;
     [SerializeField] float comboTimer = 1f;
     private float lastComboTime = 0f;
-    private float lastAttackTime = 0f;
+    private float lastAttackTime = -100f;
     private int comboIndex = 0;
     public static event Action<int> OnLightAttacking;
     private bool comboInputReceived = false;
@@ -28,43 +31,23 @@ public class PlayerCombat : MonoBehaviour
     void Update()
     {
         if (Time.time - lastComboTime > comboTimer)
-            comboIndex = 0;
-        
-        if (comboInputReceived && Time.time - lastAttackTime >= attackTimer)
         {
-            comboInputReceived = false;
+            comboIndex = 0;
+            OnLightAttacking?.Invoke(comboIndex);
+        }
+
+        if (Time.time - lastInputTime <= attackBufferTime && Time.time - lastAttackTime >= attackTimer)
+        {
             PerformLightAttack();
+            lastInputTime = -100f;
         }
     }
 
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
-        if (!isArmed) return;
-        if (Time.time - lastAttackTime < attackTimer)
-        {
-            comboInputReceived = true;
-            return;
-        }
+        if (!context.performed || !isArmed) return;
 
-        lastAttackTime = Time.time;
-        lastComboTime = Time.time;
-        comboIndex++;
-
-        if (comboIndex > 3) comboIndex = 1;
-
-        OnLightAttacking?.Invoke(comboIndex);
-
-
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider enemy in hitEnemies)
-        {
-            if (enemy.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.TakeDamage(lightAttackDamage);
-            }
-        }
+        lastInputTime = Time.time;
     }
 
     void OnHeavyAttack(InputAction.CallbackContext context)
@@ -114,20 +97,20 @@ public class PlayerCombat : MonoBehaviour
     }
 
     void PerformLightAttack()
+{
+    lastAttackTime = Time.time;
+    lastComboTime = Time.time;
+    comboIndex++;
+
+    if (comboIndex > 3) comboIndex = 1;
+
+    OnLightAttacking?.Invoke(comboIndex);
+
+    Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+    foreach (Collider enemy in hitEnemies)
     {
-        lastAttackTime = Time.time;
-        lastComboTime = Time.time;
-        comboIndex++;
-
-        if (comboIndex > 3) comboIndex = 1;
-
-        OnLightAttacking?.Invoke(comboIndex);
-
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
-        foreach (Collider enemy in hitEnemies)
-        {
-            if (enemy.TryGetComponent(out IDamageable damageable))
-                damageable.TakeDamage(lightAttackDamage);
-        }
+        if (enemy.TryGetComponent(out IDamageable damageable))
+            damageable.TakeDamage(lightAttackDamage);
     }
+}
 }
