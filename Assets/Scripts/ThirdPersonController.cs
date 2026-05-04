@@ -17,6 +17,7 @@ public class ThirdPersonController : MonoBehaviour
     public float turnSmoothTime = 0.2f;
     public float sidestepSpeed = 8f;
     [SerializeField] AnimationCurve rollCurve;
+    
 
     public static event Action OnJumping;
     public bool onAir;
@@ -83,6 +84,17 @@ public class ThirdPersonController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
         controller.Move(horizontalMove * currentSpeed * Time.deltaTime + verticalMove * Time.deltaTime);
+
+        if (!controller.isGrounded && !isJumping)
+        {
+            onAir = true;
+        }
+        
+        if (controller.isGrounded)
+        {
+            onAir = false;
+            isJumping = false;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -94,6 +106,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (context.performed && controller.isGrounded && !isCrouching)
         {
+            isJumping = true;
             OnJumping?.Invoke();
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
@@ -183,7 +196,6 @@ public class ThirdPersonController : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.2f);
 
         isRolling = false;
     }

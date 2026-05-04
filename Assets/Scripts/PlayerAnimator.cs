@@ -46,7 +46,7 @@ public class PlayerAnimator : MonoBehaviour
 
     void PlayRoll() => animator.Play("Roll");
 
-    void PlayJump() => animator.SetTrigger("Jump");
+    void PlayJump() => animator.Play("Jump");
 
     void PlayAttack(int comboIndex)
     {
