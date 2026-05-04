@@ -106,11 +106,6 @@ public class PlayerCombat : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(attackPoint.position, attackPoint.forward * 1f); // İleri yönü (Mavi)
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(attackPoint.position, attackPoint.up * 1f);
     }
 
     void PerformLightAttack()
@@ -129,8 +124,10 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             if (enemy.TryGetComponent(out IDamageable damageable))
+            {
                 damageable.TakeDamage(lightAttackDamage);
-                StartCoroutine(HitStop(0.04f));
+                StartCoroutine(HitStop(0.1f));
+            }
         }
     }
 
