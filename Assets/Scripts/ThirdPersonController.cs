@@ -104,7 +104,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && controller.isGrounded && !isCrouching)
+        if (context.performed && controller.isGrounded && !isCrouching && !isRolling)
         {
             isJumping = true;
             OnJumping?.Invoke();

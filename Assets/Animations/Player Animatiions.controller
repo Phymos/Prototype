@@ -2084,7 +2084,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Roll
-  m_Speed: 1.6
+  m_Speed: 1.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8184962055606968270}
