@@ -123,7 +123,7 @@ public class PlayerCombat : MonoBehaviour
 
         OnLightAttacking?.Invoke(comboIndex);
         isAttacking = true;
-        StartCoroutine(AttackLunge(0.2f, 4f));        
+        StartCoroutine(AttackLunge(0.4f, 4f));        
 
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider enemy in hitEnemies)
