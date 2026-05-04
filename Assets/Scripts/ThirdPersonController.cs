@@ -32,6 +32,7 @@ public class ThirdPersonController : MonoBehaviour
     public bool isMoving;
     public bool isRunning;
     public bool isCrouching;
+    private PlayerCombat playerCombat;
 
 
     public Vector3 currentVelocity => controller.velocity;
@@ -45,11 +46,15 @@ public class ThirdPersonController : MonoBehaviour
     {
         Keyframe rollLastFrame = rollCurve[rollCurve.length - 1];
         rollTimer = rollLastFrame.time;
+        playerCombat = GetComponent<PlayerCombat>();
     }
 
     void Update()
     {
         if (isRolling)
+            return;
+
+        if (playerCombat.isAttacking)
             return;
 
         if (controller.isGrounded && verticalVelocity < 0)

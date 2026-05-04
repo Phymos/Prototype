@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -13,11 +16,6 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
     public float lightAttackDamage = 20f;
     public float heavyAttackDamage = 40f;
-    
-    public bool isBlocking = false;
-    public bool isArmed = false;
-
-
     public float attackBufferTime = 0.5f;
     private float lastInputTime = -100f;
     [SerializeField] float attackTimer = 0.5f;
@@ -25,7 +23,21 @@ public class PlayerCombat : MonoBehaviour
     private float lastComboTime = 0f;
     private float lastAttackTime = -100f;
     private int comboIndex = 0;
+    
+    public bool isBlocking = false;
+    public bool isArmed = false;
+    public bool isAttacking = false;
+
+    private CharacterController characterController;
+    private ThirdPersonController thirdPersonController;
+
     public static event Action<int> OnLightAttacking;
+
+    void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+        thirdPersonController = GetComponent<ThirdPersonController>();
+    }
 
     void Update()
     {
@@ -33,6 +45,7 @@ public class PlayerCombat : MonoBehaviour
         {
             comboIndex = 0;
             OnLightAttacking?.Invoke(comboIndex);
+            isAttacking = false;
         }
 
         if (Time.time - lastInputTime <= attackBufferTime && Time.time - lastAttackTime >= attackTimer)
@@ -93,23 +106,49 @@ public class PlayerCombat : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(attackPoint.position, attackPoint.forward * 1f); // İleri yönü (Mavi)
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(attackPoint.position, attackPoint.up * 1f);
     }
 
     void PerformLightAttack()
-{
-    lastAttackTime = Time.time;
-    lastComboTime = Time.time;
-    comboIndex++;
-
-    if (comboIndex > 3) comboIndex = 1;
-
-    OnLightAttacking?.Invoke(comboIndex);
-
-    Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
-    foreach (Collider enemy in hitEnemies)
     {
-        if (enemy.TryGetComponent(out IDamageable damageable))
-            damageable.TakeDamage(lightAttackDamage);
+        lastAttackTime = Time.time;
+        lastComboTime = Time.time;
+        comboIndex++;
+
+        if (comboIndex > 3) comboIndex = 1;
+
+        OnLightAttacking?.Invoke(comboIndex);
+        isAttacking = true;
+        StartCoroutine(AttackLunge(0.2f, 4f));        
+
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider enemy in hitEnemies)
+        {
+            if (enemy.TryGetComponent(out IDamageable damageable))
+                damageable.TakeDamage(lightAttackDamage);
+                StartCoroutine(HitStop(0.04f));
+        }
     }
+
+    IEnumerator HitStop(float duration)
+{
+    Time.timeScale = 0.05f;
+    yield return new WaitForSecondsRealtime(duration);
+    Time.timeScale = 1f;
 }
+
+    IEnumerator AttackLunge(float duration, float speed)
+    {
+        float timer = 0f;
+        while (timer < duration)
+        {
+            characterController.Move(transform.forward * speed * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
 }
