@@ -17,7 +17,7 @@ public class ThirdPersonController : MonoBehaviour
     public float turnSmoothTime = 0.2f;
     public float sidestepSpeed = 8f;
     [SerializeField] AnimationCurve rollCurve;
-    
+    public float rollTurnSpeed = 180f;
 
     public static event Action OnJumping;
     public bool onAir;
@@ -181,10 +181,9 @@ public class ThirdPersonController : MonoBehaviour
             if (moveInput.magnitude > 0.1f)
             {
                 Vector3 targetDirection = Quaternion.Euler(0, cam.eulerAngles.y, 0) * moveInput;
-                float targetAngle = Mathf.Atan2(targetDirection.x, targetDirection.z) * Mathf.Rad2Deg;
+                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rollTurnSpeed * Time.deltaTime);
             }
 
             float rollSpeed = rollCurve.Evaluate(timer);
