@@ -32,8 +32,12 @@ public class ThirdPersonController : MonoBehaviour
     public bool isMoving;
     public bool isRunning;
     public bool isCrouching;
-    public bool isLanding;
     private PlayerCombat playerCombat;
+
+    [Header("Landing Settings")]
+    public float hardLandingThreshold = -12f;
+    public bool isLanding;
+
 
 
     public Vector3 currentVelocity => controller.velocity;
@@ -52,12 +56,6 @@ public class ThirdPersonController : MonoBehaviour
 
     void Update()
     {
-        if (isRolling)
-            return;
-
-        if (playerCombat.isAttacking)
-            return;
-
         if (controller.isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f;
@@ -74,13 +72,16 @@ public class ThirdPersonController : MonoBehaviour
         
         if (controller.isGrounded)
         {
-            if (onAir)
-                isLanding = true;
             onAir = false;
             isJumping = false;
         }
 
-        if (isLanding) return;
+        if (isRolling || playerCombat.isAttacking)
+        {
+            controller.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+            return;
+        }
+
 
         Vector3 horizontalMove = new Vector3(input.x, 0, input.y);
         horizontalMove = Quaternion.Euler(0, cam.eulerAngles.y, 0) * horizontalMove;

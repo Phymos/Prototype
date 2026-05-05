@@ -18,6 +18,7 @@ public class PlayerAnimator : MonoBehaviour
         Vector3 localVelocity = movement.transform.InverseTransformDirection(movement.currentVelocity);
         animator.SetFloat("VelocityX", localVelocity.x);
         animator.SetFloat("VelocityZ", localVelocity.z);
+        animator.SetFloat("VelocityY", localVelocity.y);
 
         animator.SetFloat("Speed", movement.currentVelocity.magnitude / movement.runSpeed);
         animator.SetBool("OnAir", movement.onAir);
@@ -54,7 +55,12 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetTrigger("LightAttack");
     }
 
-    public void OnLandingEnd()
+    public void IsLandingEnable()
+    {
+        movement.isLanding = true;
+    }
+
+    public void IsLandingDisable()
     {
         movement.isLanding = false;
     }
