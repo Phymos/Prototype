@@ -21,7 +21,6 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("VelocityY", localVelocity.y);
 
         animator.SetBool("IsHardLanding", movement.isHardLanding);
-        animator.SetBool("IsLanding", movement.isLanding);
 
         animator.SetFloat("Speed", movement.currentVelocity.magnitude / movement.runSpeed);
         animator.SetBool("OnAir", movement.onAir);
