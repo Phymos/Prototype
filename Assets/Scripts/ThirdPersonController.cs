@@ -75,10 +75,12 @@ public class ThirdPersonController : MonoBehaviour
             if (verticalVelocity < hardLandingThreshold) 
             {
                 isHardLanding = true;
+                isLanding = false;
             }
             else
             {
                 isHardLanding = false;
+                isLanding = true;
             }
 
             onAir = false;
