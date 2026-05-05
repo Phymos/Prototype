@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,7 +37,9 @@ public class ThirdPersonController : MonoBehaviour
 
     [Header("Landing Settings")]
     public float hardLandingThreshold = -12f;
+    public bool isHardLanding;
     public bool isLanding;
+
 
 
 
@@ -56,27 +59,48 @@ public class ThirdPersonController : MonoBehaviour
 
     void Update()
     {
-        if (controller.isGrounded && verticalVelocity < 0)
-        {
-            verticalVelocity = -2f;
-        }
-        else
+        if (!controller.isGrounded)
         {
             verticalVelocity += gravity * Time.deltaTime;
+            if (!isJumping) onAir = true;
         }
 
         if (!controller.isGrounded && !isJumping)
         {
             onAir = true;
         }
-        
+
+        if (onAir && controller.isGrounded)
+        {
+            if (verticalVelocity < hardLandingThreshold) 
+            {
+                isHardLanding = true;
+                isLanding = false;
+            }
+            else
+            {
+                isHardLanding = false;
+                isLanding = true;
+            }
+
+            // Kararımızı verdik, şimdi değerleri sıfırlayabiliriz
+            onAir = false;
+            isJumping = false;
+            verticalVelocity = -2f; 
+        }
+
+        if (controller.isGrounded && verticalVelocity < 0)
+        {
+            verticalVelocity = -2f;
+        }
+
         if (controller.isGrounded)
         {
             onAir = false;
             isJumping = false;
         }
 
-        if (isRolling || playerCombat.isAttacking)
+        if (isRolling || playerCombat.isAttacking || isHardLanding)
         {
             controller.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
             return;
@@ -109,7 +133,7 @@ public class ThirdPersonController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && controller.isGrounded && !isCrouching && !isRolling)
+        if (context.performed && controller.isGrounded && !isCrouching && !isRolling && !isHardLanding)
         {
             isJumping = true;
             OnJumping?.Invoke();
