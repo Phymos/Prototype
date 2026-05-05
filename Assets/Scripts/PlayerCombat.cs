@@ -59,7 +59,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isArmed || thirdPersonController.onAir || thirdPersonController.isLanding) return;
+        if (!context.performed || !isArmed || thirdPersonController.onAir || thirdPersonController.isHardLanding) return;
 
         lastInputTime = Time.time;
     }

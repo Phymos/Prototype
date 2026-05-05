@@ -15,6 +15,7 @@ public class PlayerMovementSfx : MonoBehaviour
     public AudioClip concreteJumpClip;
     public AudioClip grassLandClip;
     public AudioClip concreteLandClip;
+    public AudioClip rollClip;
     AudioClip jumpClip;
     AudioClip landClip;
 
@@ -80,7 +81,10 @@ public class PlayerMovementSfx : MonoBehaviour
 
     public void PlayRollSound()
     {
-        // Implement roll sound logic here
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+            float volume = Random.Range(0.6f, 0.8f);
+                
+        audioSource.PlayOneShot(rollClip, volume);
     }
 
     public void PlaySidestepSound()
