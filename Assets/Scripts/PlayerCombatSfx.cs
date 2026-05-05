@@ -12,6 +12,8 @@ public class PlayerCombatSfx : MonoBehaviour
     public AudioClip[] parryClips;
     public AudioClip[] takeDamageClips;
     public AudioClip[] deathClips;
+    public AudioClip[] swooshClips;
+    public AudioClip[] slashClips;
 
     AudioClip[] clips;
 
@@ -96,6 +98,34 @@ public class PlayerCombatSfx : MonoBehaviour
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         float volume = Random.Range(0.7f, 0.8f);
 
+        AudioClip clip = clips[Random.Range(0, clips.Length)];
+        audioSource.PlayOneShot(clip, volume);
+    }
+
+    public void PlaySwooshSound()
+    {
+        if (swooshClips.Length == 0)
+            return;
+
+        clips = swooshClips;
+
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        float volume = Random.Range(0.7f, 0.8f);
+        
+        AudioClip clip = clips[Random.Range(0, clips.Length)];
+        audioSource.PlayOneShot(clip, volume);
+    }
+
+    public void PlaySlashSound()
+    {
+        if (slashClips.Length == 0)
+            return;
+
+        clips = slashClips;
+
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        float volume = Random.Range(0.7f, 0.8f);
+        
         AudioClip clip = clips[Random.Range(0, clips.Length)];
         audioSource.PlayOneShot(clip, volume);
     }

@@ -29,14 +29,14 @@ public class PlayerCombat : MonoBehaviour
     public bool isAttacking = false;
 
     private CharacterController characterController;
-    private ThirdPersonController thirdPersonController;
-
+    private PlayerCombatSfx playerCombatSfx;
+    
     public static event Action<int> OnLightAttacking;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        thirdPersonController = GetComponent<ThirdPersonController>();
+        playerCombatSfx = GetComponent<PlayerCombatSfx>();
     }
 
     void Update()
@@ -126,6 +126,7 @@ public class PlayerCombat : MonoBehaviour
             if (enemy.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(lightAttackDamage);
+                playerCombatSfx.PlaySlashSound();
                 StartCoroutine(HitStop(0.1f));
             }
         }
