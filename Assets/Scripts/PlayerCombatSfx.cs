@@ -110,7 +110,7 @@ public class PlayerCombatSfx : MonoBehaviour
         clips = swooshClips;
 
         audioSource.pitch = Random.Range(0.9f, 1.1f);
-        float volume = Random.Range(0.7f, 0.8f);
+        float volume = Random.Range(0.2f, 0.3f);
         
         AudioClip clip = clips[Random.Range(0, clips.Length)];
         audioSource.PlayOneShot(clip, volume);
