@@ -83,7 +83,6 @@ public class ThirdPersonController : MonoBehaviour
                 isLanding = true;
             }
 
-            // Kararımızı verdik, şimdi değerleri sıfırlayabiliriz
             onAir = false;
             isJumping = false;
             verticalVelocity = -2f; 
