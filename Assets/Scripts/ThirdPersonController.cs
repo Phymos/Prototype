@@ -32,6 +32,7 @@ public class ThirdPersonController : MonoBehaviour
     public bool isMoving;
     public bool isRunning;
     public bool isCrouching;
+    public bool isLanding;
     private PlayerCombat playerCombat;
 
 
@@ -73,9 +74,13 @@ public class ThirdPersonController : MonoBehaviour
         
         if (controller.isGrounded)
         {
+            if (onAir)
+                isLanding = true;
             onAir = false;
             isJumping = false;
         }
+
+        if (isLanding) return;
 
         Vector3 horizontalMove = new Vector3(input.x, 0, input.y);
         horizontalMove = Quaternion.Euler(0, cam.eulerAngles.y, 0) * horizontalMove;
@@ -93,12 +98,6 @@ public class ThirdPersonController : MonoBehaviour
         if (!controller.isGrounded && !isJumping)
         {
             onAir = true;
-        }
-        
-        if (controller.isGrounded)
-        {
-            onAir = false;
-            isJumping = false;
         }
     }
 

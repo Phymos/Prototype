@@ -53,4 +53,9 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetInteger("ComboIndex", comboIndex);
         animator.SetTrigger("LightAttack");
     }
+
+    public void OnLandingEnd()
+    {
+        movement.isLanding = false;
+    }
 }

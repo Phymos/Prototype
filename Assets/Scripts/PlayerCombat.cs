@@ -30,6 +30,7 @@ public class PlayerCombat : MonoBehaviour
 
     private CharacterController characterController;
     private PlayerCombatSfx playerCombatSfx;
+    private ThirdPersonController thirdPersonController;
     
     public static event Action<int> OnLightAttacking;
 
@@ -37,6 +38,7 @@ public class PlayerCombat : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         playerCombatSfx = GetComponent<PlayerCombatSfx>();
+        thirdPersonController = GetComponent<ThirdPersonController>();
     }
 
     void Update()
@@ -57,7 +59,7 @@ public class PlayerCombat : MonoBehaviour
 
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isArmed) return;
+        if (!context.performed || !isArmed || thirdPersonController.onAir || thirdPersonController.isLanding) return;
 
         lastInputTime = Time.time;
     }
