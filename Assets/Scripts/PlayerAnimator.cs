@@ -84,4 +84,14 @@ public class PlayerAnimator : MonoBehaviour
     {
         movement.isHardLanding = false;
     }
+
+    public void EnableSword() 
+    {
+        if (combat != null) combat.EnableSword();
+    }
+
+    public void DisableSword() 
+    {
+        if (combat != null) combat.DisableSword();
+    }
 }

@@ -5612,37 +5612,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &655749269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 655749270}
-  m_Layer: 0
-  m_Name: AttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &655749270
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655749269}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.32759473, y: 0.10939971, z: 0.038220488, w: 0.9376847}
-  m_LocalPosition: {x: -0.002, y: -0.008, z: 0.718}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1444328497}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -7922,16 +7891,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c49b9fdbbdbe54e8e80beacbbc4bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
-  attackPoint: {fileID: 655749270}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
-  attackRange: 0.5
   lightAttackDamage: 20
   heavyAttackDamage: 40
   attackBufferTime: 0.5
   attackTimer: 0.75
   comboTimer: 1
+  swordCollider: {fileID: 1820410452}
   isBlocking: 0
   isArmed: 0
   isAttacking: 0
@@ -8274,6 +8242,59 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1820410449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7538690845241754994, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
+  m_PrefabInstance: {fileID: 1831628215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1820410452
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820410449}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.052727297, y: 0.1672155, z: 1.2947272}
+  m_Center: {x: 0.000000068859194, y: 0.009056744, z: 0.49562943}
+--- !u!54 &1820410453
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820410449}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1831628215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8343,11 +8364,14 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 655749270}
-    - targetCorrespondingSourceObject: {fileID: 7193690946543787976, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 536156289}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7538690845241754994, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1820410452}
+    - targetCorrespondingSourceObject: {fileID: 7538690845241754994, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1820410453}
   m_SourcePrefab: {fileID: 100100000, guid: 06583b4e9109dff4799d5282ed4d7e86, type: 3}
 --- !u!4 &1895050225 stripped
 Transform:
@@ -8366,6 +8390,8 @@ GameObject:
   - component: {fileID: 1968844688}
   - component: {fileID: 1968844687}
   - component: {fileID: 1968844686}
+  - component: {fileID: 1968844690}
+  - component: {fileID: 1968844691}
   m_Layer: 6
   m_Name: Enemy test
   m_TagString: Untagged
@@ -8468,6 +8494,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1968844690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968844685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b9557f2dce06d4eb3bbf72b05c1077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DummyEnemy
+--- !u!54 &1968844691
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968844685}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

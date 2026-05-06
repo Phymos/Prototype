@@ -1,20 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.VFX;
 
 public class PlayerCombat : MonoBehaviour
 {
     [Header("References")]
-    public Transform attackPoint;
     public LayerMask enemyLayers;
 
     [Header("Attack Settings")]
-    public float attackRange = 0.5f;
     public float lightAttackDamage = 20f;
     public float heavyAttackDamage = 40f;
     public float attackBufferTime = 0.5f;
@@ -26,7 +21,7 @@ public class PlayerCombat : MonoBehaviour
     private int comboIndex = 0;
 
     public Collider swordCollider;
-    private List<GameObject> alreadyHit = new List<GameObject>();
+    public List<GameObject> alreadyHit = new List<GameObject>();
     
     public bool isBlocking = false;
     public bool isArmed = false;
@@ -98,16 +93,6 @@ public class PlayerCombat : MonoBehaviour
     void OnHeavyAttack(InputAction.CallbackContext context)
     {
         if (!isArmed) return;
-        
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider enemy in hitEnemies)
-        {
-            if (enemy.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.TakeDamage(heavyAttackDamage);
-            }
-        }
     }
 
     void OnBlock(InputAction.CallbackContext context)
@@ -135,12 +120,6 @@ public class PlayerCombat : MonoBehaviour
             isArmed = true;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-    }
-
     void PerformLightAttack()
     {
         lastAttackTime = Time.time;
@@ -154,7 +133,7 @@ public class PlayerCombat : MonoBehaviour
         StartCoroutine(AttackLunge(0.4f, 4f));      
     }
 
-    IEnumerator HitStop(float duration)
+    public IEnumerator HitStop(float duration)
 {
     Time.timeScale = 0f;
     yield return new WaitForSecondsRealtime(duration);
