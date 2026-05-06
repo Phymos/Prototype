@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,6 +24,9 @@ public class PlayerCombat : MonoBehaviour
     private float lastComboTime = 0f;
     private float lastAttackTime = -100f;
     private int comboIndex = 0;
+
+    public Collider swordCollider;
+    private List<GameObject> alreadyHit = new List<GameObject>();
     
     public bool isBlocking = false;
     public bool isArmed = false;
@@ -57,9 +61,36 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    public void EnableSword() 
+    { 
+        alreadyHit.Clear();
+        swordCollider.enabled = true; 
+    }
+
+    public void DisableSword() 
+    { 
+        swordCollider.enabled = false; 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!swordCollider.enabled) return;
+
+        if (((1 << other.gameObject.layer) & enemyLayers) != 0 && !alreadyHit.Contains(other.gameObject))
+        {
+            if (other.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(lightAttackDamage);
+                alreadyHit.Add(other.gameObject);
+                //playerCombatSfx.PlaySlashSound();
+                StartCoroutine(HitStop(0.1f));
+            }
+        }
+    }
+
     public void OnLightAttack(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isArmed || thirdPersonController.onAir || thirdPersonController.isHardLanding) return;
+        if (!context.performed || !isArmed || thirdPersonController.onAir || thirdPersonController.isHardLanding || thirdPersonController.isRolling) return;
 
         lastInputTime = Time.time;
     }
@@ -120,23 +151,12 @@ public class PlayerCombat : MonoBehaviour
 
         OnLightAttacking?.Invoke(comboIndex);
         isAttacking = true;
-        StartCoroutine(AttackLunge(0.4f, 4f));        
-
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
-        foreach (Collider enemy in hitEnemies)
-        {
-            if (enemy.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.TakeDamage(lightAttackDamage);
-                playerCombatSfx.PlaySlashSound();
-                StartCoroutine(HitStop(0.1f));
-            }
-        }
+        StartCoroutine(AttackLunge(0.4f, 4f));      
     }
 
     IEnumerator HitStop(float duration)
 {
-    Time.timeScale = 0.05f;
+    Time.timeScale = 0f;
     yield return new WaitForSecondsRealtime(duration);
     Time.timeScale = 1f;
 }
@@ -146,7 +166,10 @@ public class PlayerCombat : MonoBehaviour
         float timer = 0f;
         while (timer < duration)
         {
-            characterController.Move(transform.forward * speed * Time.deltaTime);
+            Vector3 lunge = transform.forward * speed;
+            Vector3 gravity = Vector3.up * thirdPersonController.verticalVelocity;
+
+            characterController.Move((lunge + gravity) * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;
         }

@@ -24,10 +24,10 @@ public class ThirdPersonController : MonoBehaviour
     public bool onAir;
     private bool isJumping;
     public static event Action OnRolling;
-    bool isRolling;
+    public bool isRolling;
     float rollTimer;
     private Vector2 input;
-    private float verticalVelocity;
+    public float verticalVelocity;
     private float gravity = -10f;
     float turnSmoothVelocity;
     public bool isMoving;
@@ -41,10 +41,6 @@ public class ThirdPersonController : MonoBehaviour
     public bool isLanding;
     public static event Action OnLanding;
     public static event Action OnHardLanding;
-    
-
-
-
 
     public Vector3 currentVelocity => controller.velocity;
 

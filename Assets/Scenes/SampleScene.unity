@@ -7469,7 +7469,7 @@ AudioSource:
   m_GameObject: {fileID: 1186999060}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 878722e73d540b84680939a6d72e0775, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -7720,6 +7720,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   rollTurnSpeed: 120
   onAir: 0
+  isRolling: 0
+  verticalVelocity: 0
   isMoving: 0
   isRunning: 0
   isCrouching: 0
@@ -8029,7 +8031,7 @@ AudioSource:
   m_GameObject: {fileID: 1643561901}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8a82ec58bf164f64cb60a5acf7aa8d80, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
