@@ -983,7 +983,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hard Landing
+  m_Name: HardLanding
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1015,12 +1015,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsGrounded
     m_EventTreshold: 0
-  - m_ConditionMode: 3
-    m_ConditionEvent: VelocityY
-    m_EventTreshold: -12
   - m_ConditionMode: 1
     m_ConditionEvent: IsHardLanding
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: VelocityY
+    m_EventTreshold: -12
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -865327398575541464}
   m_Solo: 0
@@ -1967,13 +1967,13 @@ AnimatorStateMachine:
     m_Position: {x: -140, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8385072740617408124}
-    m_Position: {x: 130, y: 310, z: 0}
+    m_Position: {x: 130, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7108637240168156724}
-    m_Position: {x: 420, y: 200, z: 0}
+    m_Position: {x: 420, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -865327398575541464}
-    m_Position: {x: 420, y: 270, z: 0}
+    m_Position: {x: 420, y: 290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -2264,7 +2264,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: a63cb7d018f0d92469e4935630b45668, type: 3}
+  m_Motion: {fileID: 7400000, guid: b5658fbc13a094548a303aa9b90aa8fc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2364,9 +2364,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: IsHardLanding
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: IsLanding
-    m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: VelocityY
+    m_EventTreshold: -12
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7108637240168156724}
   m_Solo: 0

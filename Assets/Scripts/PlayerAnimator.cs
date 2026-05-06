@@ -39,6 +39,8 @@ public class PlayerAnimator : MonoBehaviour
         ThirdPersonController.OnRolling += PlayRoll;
         PlayerCombat.OnLightAttacking += PlayAttack;
         ThirdPersonController.OnJumping += PlayJump;
+        ThirdPersonController.OnLanding += PlayLanding;
+        ThirdPersonController.OnHardLanding += PlayHardLanding;
     }
 
     void OnDisable()
@@ -46,6 +48,8 @@ public class PlayerAnimator : MonoBehaviour
         ThirdPersonController.OnRolling -= PlayRoll;
         PlayerCombat.OnLightAttacking -= PlayAttack;
         ThirdPersonController.OnJumping -= PlayJump;
+        ThirdPersonController.OnLanding -= PlayLanding;
+        ThirdPersonController.OnHardLanding -= PlayHardLanding;
     }
 
     void PlayRoll() => animator.Play("Roll");
@@ -57,6 +61,9 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetInteger("ComboIndex", comboIndex);
         animator.SetTrigger("LightAttack");
     }
+
+    void PlayLanding() => animator.SetTrigger("IsLanding");
+    void PlayHardLanding() => animator.Play("HardLanding");
 
     public void IsLandingEnable()
     {

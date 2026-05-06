@@ -39,6 +39,9 @@ public class ThirdPersonController : MonoBehaviour
     public float hardLandingThreshold = -12f;
     public bool isHardLanding;
     public bool isLanding;
+    public static event Action OnLanding;
+    public static event Action OnHardLanding;
+    
 
 
 
@@ -75,12 +78,14 @@ public class ThirdPersonController : MonoBehaviour
             if (verticalVelocity < hardLandingThreshold) 
             {
                 isHardLanding = true;
-                isLanding = false;
+                OnHardLanding?.Invoke();
+                StartCoroutine(ResetHardLanding());
             }
             else
             {
-                isHardLanding = false;
                 isLanding = true;
+                OnLanding?.Invoke();
+                StartCoroutine(ResetLanding());
             }
 
             onAir = false;
@@ -223,7 +228,18 @@ public class ThirdPersonController : MonoBehaviour
             yield return null;
         }
 
-
         isRolling = false;
+    }
+
+    IEnumerator ResetLanding()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isLanding = false;
+    }
+
+    IEnumerator ResetHardLanding()
+    {
+        yield return new WaitForSeconds(1.2f);
+        isHardLanding = false;
     }
 }
