@@ -82,7 +82,7 @@ public class PlayerMovementSfx : MonoBehaviour
     public void PlayRollSound()
     {
         audioSource.pitch = Random.Range(0.9f, 1.1f);
-            float volume = Random.Range(0.6f, 0.8f);
+            float volume = Random.Range(0.8f, 0.1f);
                 
         audioSource.PlayOneShot(rollClip, volume);
     }
