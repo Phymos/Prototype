@@ -206,8 +206,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3470976, y: -0.0000000069140103, z: 0.0000000025589277, w: 0.937829}
-  m_LocalPosition: {x: 13.4124775, y: 3.49, z: 9.691436}
+  m_LocalRotation: {x: 0.4663213, y: -0.000000027293613, z: 0.0000000143877115, w: 0.8846155}
+  m_LocalPosition: {x: 13.4124775, y: 5.37, z: 9.691436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -289,58 +289,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!1 &358967213
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 358967215}
-  - component: {fileID: 358967214}
-  m_Layer: 0
-  m_Name: Target Group
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &358967214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358967213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineTargetGroup
-  PositionMode: 0
-  RotationMode: 1
-  UpdateMethod: 2
-  Targets:
-  - Object: {fileID: 1244263619}
-    Weight: 1
-    Radius: 1
-  m_LegacyTargets: []
---- !u!4 &358967215
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358967213}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.4124775, y: 0.99, z: 12.691436}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,7 +6092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
   Composition:
-    ScreenPosition: {x: 0, y: -0.012307674}
+    ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -6187,7 +6135,7 @@ MonoBehaviour:
       Height: 4.6
     Center:
       Radius: 3
-      Height: 2.5
+      Height: 4.38
     Bottom:
       Radius: 2.5
       Height: 0.1
@@ -6244,8 +6192,8 @@ MonoBehaviour:
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 1244263619}
-    LookAtTarget: {fileID: 358967215}
-    CustomLookAtTarget: 1
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60.000004
     OrthographicSize: 5
@@ -6274,8 +6222,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974612097}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3470976, y: -0.0000000069140107, z: 0.0000000025589275, w: 0.937829}
-  m_LocalPosition: {x: 13.4124775, y: 3.49, z: 9.691436}
+  m_LocalRotation: {x: 0.46632123, y: -0.000000027293607, z: 0.000000014387705, w: 0.8846155}
+  m_LocalPosition: {x: 13.4124775, y: 5.37, z: 9.691436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7762,7 +7710,6 @@ GameObject:
   - component: {fileID: 1244263624}
   - component: {fileID: 1244263625}
   - component: {fileID: 1244263626}
-  - component: {fileID: 1244263627}
   m_Layer: 0
   m_Name: Third Person Player
   m_TagString: Player
@@ -7936,6 +7883,22 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1244263623}
         m_TargetAssemblyTypeName: ThirdPersonController, Assembly-CSharp
+        m_MethodName: OnCrouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 83ba14aa-b1ea-4ad8-a655-b40422378a7a
+    m_ActionName: 'Player/Crouch[/Keyboard/ctrl]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1244263623}
+        m_TargetAssemblyTypeName: ThirdPersonController, Assembly-CSharp
         m_MethodName: OnRoll
         m_Mode: 0
         m_Arguments:
@@ -8036,22 +7999,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fe883960-9c97-4bce-b6a0-4ffe40871333
     m_ActionName: 'Player/DrawSword[/Keyboard/1]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1244263627}
-        m_TargetAssemblyTypeName: LockOnSystem, Assembly-CSharp
-        m_MethodName: OnLockOn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: c2d4772f-175f-4d8b-bf3f-6599024cf990
-    m_ActionName: 'Player/LockOn[/Keyboard/z]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -8101,23 +8048,6 @@ MonoBehaviour:
   grabbableLayer:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &1244263627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244263618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8385c9029b4b9b4da4a8040d5cf5770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LockInSystem
-  player: {fileID: 1244263619}
-  cam: {fileID: 974612102}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &1408426824
 GameObject:
   m_ObjectHideFlags: 0
@@ -8742,4 +8672,3 @@ SceneRoots:
   - {fileID: 952692816}
   - {fileID: 1968844689}
   - {fileID: 692588719}
-  - {fileID: 358967215}

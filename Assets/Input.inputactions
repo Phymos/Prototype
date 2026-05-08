@@ -25,15 +25,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "83ba14aa-b1ea-4ad8-a655-b40422378a7a",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Roll",
                     "type": "Button",
                     "id": "211b3114-b780-45fc-9e9f-e308fd75ac71",
@@ -100,6 +91,15 @@
                     "name": "DrawSword",
                     "type": "Button",
                     "id": "fe883960-9c97-4bce-b6a0-4ffe40871333",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LockOn",
+                    "type": "Button",
+                    "id": "c2d4772f-175f-4d8b-bf3f-6599024cf990",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -197,17 +197,6 @@
                 },
                 {
                     "name": "",
-                    "id": "8763e2b4-c73b-4235-b6fe-04be21086ea6",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "efa96ba5-ec69-49b6-8ce9-26232e8109c7",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -291,6 +280,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DrawSword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90f8b00e-ba33-4b24-9804-d2a5f64e9e1d",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LockOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

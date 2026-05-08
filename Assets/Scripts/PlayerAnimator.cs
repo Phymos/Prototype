@@ -29,8 +29,6 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("IsGrounded", movement.controller.isGrounded);
         animator.SetBool("IsBlocking", combat.isBlocking);
         animator.SetBool("IsArmed", combat.isArmed);
-
-        animator.SetLayerWeight(1, movement.isCrouching ? 1 : 0);
     }
 
 
