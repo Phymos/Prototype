@@ -7,8 +7,10 @@ public class LockOnSystem : MonoBehaviour
 {
     public Transform player;
     public CinemachineCamera cam;
+    public CinemachineTargetGroup targetGroup;
     public LayerMask enemyLayers;
     bool lockedOn = false;
+    Transform currentTarget;
 
     public void OnLockOn(InputAction.CallbackContext context)
     {
@@ -16,12 +18,14 @@ public class LockOnSystem : MonoBehaviour
 
         if (Physics.SphereCast(player.position, 2f, cam.transform.forward, out RaycastHit hit, 10f, enemyLayers) && !lockedOn)
         {
-            cam.LookAt = hit.transform;
+            currentTarget = hit.transform;
+            targetGroup.AddMember(currentTarget, 0.5f, 0.5f);
             lockedOn = true;
         }
         else
         {
-            cam.LookAt = player.transform;
+            targetGroup.RemoveMember(currentTarget);
+            currentTarget = null;
             lockedOn = false;
         }
     }
