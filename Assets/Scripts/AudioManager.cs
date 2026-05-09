@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -26,14 +27,11 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
     }
 
-    public void Play(string clipName)
+    public void PlaySFX(string clipName)
     {
         Sound s = Array.Find(sounds, sound => sound.clipName == clipName);
         if (s == null)
@@ -41,6 +39,30 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + clipName + " not found!");
             return;
         }
-        s.source.Play();
+
+        if (s.useRandomPitch)
+            s.source.pitch = s.pitch + UnityEngine.Random.Range(-s.pitchVariance, s.pitchVariance);
+        else
+            s.source.pitch = s.pitch;
+
+        if (s.useRandomVolume)
+            s.source.volume = s.volume + UnityEngine.Random.Range(-s.volumeVariance, s.volumeVariance);
+        else
+            s.source.volume = s.volume;
+
+        s.source.PlayOneShot(s.source.clip);
+    }
+
+    public void PlayMusic(string clipName)
+    {
+        Sound s = Array.Find(sounds, sound => sound.clipName == clipName);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + clipName + " not found!");
+            return;
+        }
+
+        musicSource.clip = s.clip;
+        musicSource.Play();
     }
 }
