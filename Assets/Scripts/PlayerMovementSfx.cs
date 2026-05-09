@@ -6,15 +6,15 @@ public class PlayerMovementSfx : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] grassWalkClips;
     public AudioClip[] grassRunClips;
-    public AudioClip[] concreteWalkClips;
-    public AudioClip[] concreteRunClips;
+    public AudioClip[] tileWalkClips;
+    public AudioClip[] tileRunClips;
     AudioClip[] walkClips;
     AudioClip[] runClips;
 
     public AudioClip grassJumpClip;
-    public AudioClip concreteJumpClip;
+    public AudioClip tileJumpClip;
     public AudioClip grassLandClip;
-    public AudioClip concreteLandClip;
+    public AudioClip tileLandClip;
     public AudioClip rollClip;
     AudioClip jumpClip;
     AudioClip landClip;
@@ -40,12 +40,12 @@ public class PlayerMovementSfx : MonoBehaviour
                 runClips = grassRunClips;
                 jumpClip = grassJumpClip;
                 landClip = grassLandClip;
-            }else if (hit.collider.gameObject.layer == 11) // concrete
+            }else if (hit.collider.gameObject.layer == 11) // tile
             {
-                walkClips = concreteWalkClips;
-                runClips = concreteRunClips;
-                jumpClip = concreteJumpClip;
-                landClip = concreteLandClip;
+                walkClips = tileWalkClips;
+                runClips = tileRunClips;
+                jumpClip = tileJumpClip;
+                landClip = tileLandClip;
             }
         }
     }
