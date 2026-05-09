@@ -3,10 +3,12 @@ using UnityEngine;
 public class SwordHitbox : MonoBehaviour
 {
     private PlayerCombat playerCombat;
+    private PlayerCombatSfx playerCombatSfx;
 
     void Start()
     {
         playerCombat = GetComponentInParent<PlayerCombat>();
+        playerCombatSfx = GetComponentInParent<PlayerCombatSfx>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,6 +22,7 @@ public class SwordHitbox : MonoBehaviour
             {
                 damageable.TakeDamage(playerCombat.lightAttackDamage);
                 playerCombat.alreadyHit.Add(other.gameObject);
+                playerCombatSfx.PlaySlashSound();
                 playerCombat.StartCoroutine(playerCombat.HitStop(0.1f));
             }
         }

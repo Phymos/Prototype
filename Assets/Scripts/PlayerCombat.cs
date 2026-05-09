@@ -36,7 +36,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        playerCombatSfx = GetComponent<PlayerCombatSfx>();
+        playerCombatSfx = GetComponentInChildren<PlayerCombatSfx>();
         thirdPersonController = GetComponent<ThirdPersonController>();
     }
 
@@ -65,22 +65,6 @@ public class PlayerCombat : MonoBehaviour
     public void DisableSword() 
     { 
         swordCollider.enabled = false; 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!swordCollider.enabled) return;
-
-        if (((1 << other.gameObject.layer) & enemyLayers) != 0 && !alreadyHit.Contains(other.gameObject))
-        {
-            if (other.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.TakeDamage(lightAttackDamage);
-                alreadyHit.Add(other.gameObject);
-                //playerCombatSfx.PlaySlashSound();
-                StartCoroutine(HitStop(0.1f));
-            }
-        }
     }
 
     public void OnLightAttack(InputAction.CallbackContext context)
@@ -143,11 +127,33 @@ public class PlayerCombat : MonoBehaviour
     IEnumerator AttackLunge(float duration, float speed)
     {
         float timer = 0f;
+        RaycastHit closest = default;
+        float minDist = Mathf.Infinity;
+
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, 3f, transform.forward, 3f, enemyLayers);
+        foreach(RaycastHit hit in hits)
+        {
+            if (hit.distance < minDist)
+            {
+                minDist = hit.distance;
+                closest = hit;
+            }
+        }
+
         while (timer < duration)
         {
             Vector3 lunge = transform.forward * speed;
-            Vector3 gravity = Vector3.up * thirdPersonController.verticalVelocity;
 
+            if (closest.transform != null)
+            {
+                Vector3 dir = (closest.transform.position - transform.position);
+                dir.y = 0f;
+                Quaternion targetRot = Quaternion.LookRotation(dir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * speed);
+                lunge = dir.normalized * speed;
+            }
+
+            Vector3 gravity = Vector3.up * thirdPersonController.verticalVelocity;
             characterController.Move((lunge + gravity) * Time.deltaTime);
             timer += Time.deltaTime;
             yield return null;

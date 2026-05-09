@@ -206,8 +206,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3470976, y: -0.0000000069140103, z: 0.0000000025589277, w: 0.937829}
-  m_LocalPosition: {x: 13.4124775, y: 3.49, z: 9.691436}
+  m_LocalRotation: {x: 0.22975294, y: 0.000000014381615, z: -0.000000003395039, w: 0.973249}
+  m_LocalPosition: {x: 14.1624775, y: 2.847771, z: 9.870321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -289,58 +289,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!1 &358967213
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 358967215}
-  - component: {fileID: 358967214}
-  m_Layer: 0
-  m_Name: Target Group
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &358967214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358967213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineTargetGroup
-  PositionMode: 0
-  RotationMode: 1
-  UpdateMethod: 2
-  Targets:
-  - Object: {fileID: 1244263619}
-    Weight: 1
-    Radius: 1
-  m_LegacyTargets: []
---- !u!4 &358967215
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358967213}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.4124775, y: 0.99, z: 12.691436}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5664,6 +5612,58 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &602711189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 602711191}
+  - component: {fileID: 602711190}
+  m_Layer: 0
+  m_Name: CameraTargetGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &602711190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602711189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineTargetGroup
+  PositionMode: 0
+  RotationMode: 0
+  UpdateMethod: 2
+  Targets:
+  - Object: {fileID: 1244263619}
+    Weight: 1
+    Radius: 1
+  m_LegacyTargets: []
+--- !u!4 &602711191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602711189}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.4124775, y: 0.99, z: 12.691436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &692588715
 GameObject:
   m_ObjectHideFlags: 0
@@ -6055,6 +6055,7 @@ GameObject:
   - component: {fileID: 974612099}
   - component: {fileID: 974612098}
   - component: {fileID: 974612104}
+  - component: {fileID: 974612105}
   m_Layer: 0
   m_Name: Third Person Camera
   m_TagString: Untagged
@@ -6144,7 +6145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
   Composition:
-    ScreenPosition: {x: 0, y: -0.012307674}
+    ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -6180,17 +6181,17 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   OrbitStyle: 1
-  Radius: 5
+  Radius: 3
   Orbits:
     Top:
-      Radius: 1.5
-      Height: 4.6
+      Radius: 2.5
+      Height: 2.5
     Center:
       Radius: 3
-      Height: 2.5
+      Height: 1.5
     Bottom:
       Radius: 2.5
-      Height: 0.1
+      Height: 0.5
     SplineCurvature: 0.5
   RecenteringTarget: 2
   HorizontalAxis:
@@ -6244,7 +6245,7 @@ MonoBehaviour:
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 1244263619}
-    LookAtTarget: {fileID: 358967215}
+    LookAtTarget: {fileID: 602711191}
     CustomLookAtTarget: 1
   Lens:
     FieldOfView: 60.000004
@@ -6254,7 +6255,7 @@ MonoBehaviour:
     Dutch: 0
     ModeOverride: 0
     PhysicalProperties:
-      GateFit: 2
+      GateFit: 1
       SensorSize: {x: 21.946, y: 16.002}
       LensShift: {x: 0, y: 0}
       FocusDistance: 10
@@ -6274,8 +6275,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974612097}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3470976, y: -0.0000000069140107, z: 0.0000000025589275, w: 0.937829}
-  m_LocalPosition: {x: 13.4124775, y: 3.49, z: 9.691436}
+  m_LocalRotation: {x: 0.22975291, y: 0.000000014381614, z: -0.0000000033950387, w: 0.973249}
+  m_LocalPosition: {x: 13.4124775, y: 2.49, z: 9.691436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6320,6 +6321,21 @@ MonoBehaviour:
     NearLimit: 5
     FarLimit: 30
     MaxQualityBoost: 0.2
+--- !u!114 &974612105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974612097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCameraOffset
+  Offset: {x: 0.75, y: 0.4, z: 0}
+  ApplyAfter: 1
+  PreserveComposition: 0
 --- !u!1001 &1018450588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7725,7 +7741,8 @@ MonoBehaviour:
   swooshClips:
   - {fileID: 8300000, guid: 4efebd1a0c302e84d92ea8a67a0c01f8, type: 3}
   - {fileID: 8300000, guid: 709c0792b54349d46b4b733bea46ac7c, type: 3}
-  slashClips: []
+  slashClips:
+  - {fileID: 8300000, guid: 694d56fbf07853a48a40854f86845505, type: 3}
 --- !u!114 &1186999067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7738,7 +7755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b1a49be7747cb47a131269991b5a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementSfx
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1186999065}
   grassWalkClips: []
   grassRunClips: []
   concreteWalkClips: []
@@ -8115,6 +8132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LockInSystem
   player: {fileID: 1244263619}
   cam: {fileID: 974612102}
+  targetGroup: {fileID: 602711190}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -8742,4 +8760,4 @@ SceneRoots:
   - {fileID: 952692816}
   - {fileID: 1968844689}
   - {fileID: 692588719}
-  - {fileID: 358967215}
+  - {fileID: 602711191}
