@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Sound : MonoBehaviour
 {
     public string clipName;
@@ -15,5 +16,5 @@ public class Sound : MonoBehaviour
     public bool loop;
 
     [HideInInspector]
-    public AudioSource audioSource;
+    public AudioSource source;
 }
