@@ -5854,7 +5854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &935747686
 Transform:
   m_ObjectHideFlags: 0
@@ -7758,13 +7758,13 @@ MonoBehaviour:
   audioSource: {fileID: 1186999065}
   grassWalkClips: []
   grassRunClips: []
-  concreteWalkClips: []
-  concreteRunClips: []
+  tileWalkClips: []
+  tileRunClips: []
   grassJumpClip: {fileID: 0}
-  concreteJumpClip: {fileID: 0}
+  tileJumpClip: {fileID: 0}
   grassLandClip: {fileID: 0}
-  concreteLandClip: {fileID: 0}
-  rollClip: {fileID: 8300000, guid: e94ae3765f07b6049a75834b947b71ba, type: 3}
+  tileLandClip: {fileID: 0}
+  rollClip: {fileID: 8300000, guid: 9ef8d6c5c8079404e8e14517e875cca8, type: 3}
 --- !u!1 &1244263618
 GameObject:
   m_ObjectHideFlags: 0
