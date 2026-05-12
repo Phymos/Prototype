@@ -9,8 +9,10 @@ public class LockOnSystem : MonoBehaviour
     public CinemachineCamera cam;
     public CinemachineTargetGroup targetGroup;
     public LayerMask enemyLayers;
-    bool lockedOn = false;
-    Transform currentTarget;
+    
+    [HideInInspector]
+    public bool lockedOn = false;
+    public Transform currentTarget;
 
     public void OnLockOn(InputAction.CallbackContext context)
     {

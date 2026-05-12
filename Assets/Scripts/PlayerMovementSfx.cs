@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovementSfx : MonoBehaviour
 {
@@ -34,13 +35,14 @@ public class PlayerMovementSfx : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f))
         {
-            if (hit.collider.gameObject.layer == 10) // grass
+            if (hit.collider.CompareTag("Grass"))
             {
                 walkClips = grassWalkClips;
                 runClips = grassRunClips;
                 jumpClip = grassJumpClip;
                 landClip = grassLandClip;
-            }else if (hit.collider.gameObject.layer == 11) // tile
+            }
+            else if (hit.collider.CompareTag("Tile"))
             {
                 walkClips = tileWalkClips;
                 runClips = tileRunClips;
@@ -50,7 +52,7 @@ public class PlayerMovementSfx : MonoBehaviour
         }
     }
 
-    void PlayFootstep()
+    public void PlayFootstep()
     {
         if (walkClips.Length == 0 || runClips.Length == 0)
             {

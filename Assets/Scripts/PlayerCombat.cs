@@ -28,16 +28,16 @@ public class PlayerCombat : MonoBehaviour
     public bool isAttacking = false;
 
     private CharacterController characterController;
-    private PlayerCombatSfx playerCombatSfx;
     private ThirdPersonController thirdPersonController;
+    private LockOnSystem lockOnSystem;
     
     public static event Action<int> OnLightAttacking;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        playerCombatSfx = GetComponentInChildren<PlayerCombatSfx>();
         thirdPersonController = GetComponent<ThirdPersonController>();
+        lockOnSystem = GetComponent<LockOnSystem>();
     }
 
     void Update()
@@ -129,6 +129,7 @@ public class PlayerCombat : MonoBehaviour
         float timer = 0f;
         RaycastHit closest = default;
         float minDist = Mathf.Infinity;
+        Transform target = null;
 
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, 3f, transform.forward, 3f, enemyLayers);
         foreach(RaycastHit hit in hits)
@@ -140,13 +141,23 @@ public class PlayerCombat : MonoBehaviour
             }
         }
 
+        if (lockOnSystem.lockedOn)
+        {
+            target = lockOnSystem.currentTarget;
+        }
+
         while (timer < duration)
         {
             Vector3 lunge = transform.forward * speed;
 
-            if (closest.transform != null)
+            if (!lockOnSystem.lockedOn)
             {
-                Vector3 dir = (closest.transform.position - transform.position);
+                target = closest.transform;
+            }
+
+            if (target != null)
+            {
+                Vector3 dir = (target.position - transform.position);
                 dir.y = 0f;
                 Quaternion targetRot = Quaternion.LookRotation(dir);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * speed);
