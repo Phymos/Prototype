@@ -1,17 +1,24 @@
+using UnityEngine;
+
 public class FreezeEffect : StatusEffect
 {
     private float slowMultiplier;
+    private GameObject vfxPrefab;
+    private GameObject vfxInstance;
 
-    public FreezeEffect(float duration, float slowMultiplier)
+    public FreezeEffect(ElementSO elementData)
     {
-        this.duration = duration;
-        this.remaining = duration;
-        this.elementType = ElementType.Ice;
-        this.slowMultiplier = slowMultiplier;
+        this.duration = elementData.statusDuration;
+        this.remaining = elementData.statusDuration;
+        this.elementType = elementData.elementType;
+        this.vfxPrefab = elementData.hitVFX;
     }
 
      public override void OnApply(IDamageable target)
     {
+
+        MonoBehaviour mono = target as MonoBehaviour;
+        vfxInstance = Object.Instantiate(vfxPrefab, mono.transform);
         //hasar ver ve düşman hızını düşür
         //vfxi başlat
     }
