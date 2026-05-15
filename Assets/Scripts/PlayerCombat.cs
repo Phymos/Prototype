@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +31,7 @@ public class PlayerCombat : MonoBehaviour
     private CharacterController characterController;
     private ThirdPersonController thirdPersonController;
     private LockOnSystem lockOnSystem;
+    public ElementSO currentElement;
     
     public static event Action<int> OnLightAttacking;
 
@@ -102,6 +104,16 @@ public class PlayerCombat : MonoBehaviour
             isArmed = false;
         else
             isArmed = true;
+    }
+
+    public void OnMagic1(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y - 0.9f, transform.position.z);
+            GameObject vfx = Instantiate(currentElement.attackVFX, spawnPos, transform.rotation);
+            Destroy(vfx, 2f);
+        }
     }
 
     void PerformLightAttack()

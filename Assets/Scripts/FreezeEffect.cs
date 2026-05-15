@@ -16,11 +16,9 @@ public class FreezeEffect : StatusEffect
 
      public override void OnApply(IDamageable target)
     {
-
         MonoBehaviour mono = target as MonoBehaviour;
         vfxInstance = Object.Instantiate(vfxPrefab, mono.transform);
         //hasar ver ve düşman hızını düşür
-        //vfxi başlat
     }
 
     public override void OnTick(IDamageable target, float deltaTime) { }
@@ -28,6 +26,6 @@ public class FreezeEffect : StatusEffect
     public override void OnExpire(IDamageable target)
     {
         // hızı geri ver
-        //vfxi kapa
+        Object.Destroy(vfxInstance);
     }
 }

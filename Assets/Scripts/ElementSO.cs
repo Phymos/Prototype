@@ -17,6 +17,7 @@ public class ElementSO : ScriptableObject
     public float statusDuration;
 
     [Header("Visuals")]
+    public GameObject attackVFX;
     public GameObject hitVFX;
     public AudioClip hitSFX;
 }

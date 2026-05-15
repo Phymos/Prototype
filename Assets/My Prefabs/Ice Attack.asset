@@ -15,9 +15,10 @@ MonoBehaviour:
   elementName: Ice
   icon: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
-  baseDamage: 0
-  elementType: 0
-  statusChance: 0
-  statusDuration: 0
-  hitVFX: {fileID: 0}
+  baseDamage: 40
+  elementType: 2
+  statusChance: 100
+  statusDuration: 3
+  attackVFX: {fileID: 3156866507962234106, guid: 645ebd7cef59b7b40b27c29bf3e99cf2, type: 3}
+  hitVFX: {fileID: 9017484664307500583, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
   hitSFX: {fileID: 0}
