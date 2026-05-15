@@ -34,12 +34,14 @@ public class PlayerCombat : MonoBehaviour
     public ElementSO currentElement;
     
     public static event Action<int> OnLightAttacking;
+    private MagicAttack magicAttack;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         thirdPersonController = GetComponent<ThirdPersonController>();
         lockOnSystem = GetComponent<LockOnSystem>();
+        magicAttack = GetComponent<MagicAttack>();
     }
 
     void Update()
@@ -113,6 +115,8 @@ public class PlayerCombat : MonoBehaviour
             Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y - 0.9f, transform.position.z);
             GameObject vfx = Instantiate(currentElement.attackVFX, spawnPos, transform.rotation);
             Destroy(vfx, 2f);
+
+            magicAttack.CastCone(10f, 60f, currentElement.baseDamage, 5f, enemyLayers);
         }
     }
 
@@ -181,5 +185,38 @@ public class PlayerCombat : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Vector3 origin = transform.position;
+    Vector3 forward = transform.forward;
+    float range = 10f;
+    float angle = 60f;
+
+    Gizmos.color = new Color(1f, 0.5f, 0f, 0.3f);
+
+    int segments = 30;
+    float halfAngle = angle / 2f;
+    Vector3 prevPoint = origin + Quaternion.Euler(0, -halfAngle, 0) * forward * range;
+
+    for (int i = 1; i <= segments; i++)
+    {
+        float t = (float)i / segments;
+        float currentAngle = Mathf.Lerp(-halfAngle, halfAngle, t);
+        Vector3 dir = Quaternion.Euler(0, currentAngle, 0) * forward;
+        Vector3 nextPoint = origin + dir * range;
+
+        Gizmos.DrawLine(origin, nextPoint);
+        Gizmos.DrawLine(prevPoint, nextPoint);
+        prevPoint = nextPoint;
+    }
+
+    // Kenar çizgileri
+    Gizmos.color = new Color(1f, 0.5f, 0f, 1f);
+    Vector3 leftEdge  = Quaternion.Euler(0, -halfAngle, 0) * forward * range;
+    Vector3 rightEdge = Quaternion.Euler(0,  halfAngle, 0) * forward * range;
+    Gizmos.DrawLine(origin, origin + leftEdge);
+    Gizmos.DrawLine(origin, origin + rightEdge);
     }
 }

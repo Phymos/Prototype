@@ -15,7 +15,7 @@ MonoBehaviour:
   elementName: Ice
   icon: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
-  baseDamage: 40
+  baseDamage: 35
   elementType: 2
   statusChance: 100
   statusDuration: 3

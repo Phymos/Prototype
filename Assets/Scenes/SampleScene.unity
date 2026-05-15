@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 692588716}
   - component: {fileID: 692588720}
   - component: {fileID: 692588721}
+  - component: {fileID: 692588722}
   m_Layer: 6
   m_Name: w
   m_TagString: Untagged
@@ -983,6 +984,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57874aac4f8d4de4ebb9e6ec7384052f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectHandler
+--- !u!54 &692588722
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692588715}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &708197203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3018,75 +3046,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46009f57772e5e743bec9df57a49ed66, type: 3}
---- !u!1001 &1140721671
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4678103677468820507, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: InitialModule.startColor.minColor.g
-      value: 0.45490196
-      objectReference: {fileID: 0}
-    - target: {fileID: 4678103677468820507, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: InitialModule.startColor.minColor.r
-      value: 0.19215687
-      objectReference: {fileID: 0}
-    - target: {fileID: 4678103677468820507, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: InitialModule.startColor.minMaxState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 16.659536
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.018000757
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 14.151526
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144037599045065202, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9017484664307500583, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
-      propertyPath: m_Name
-      value: Freezing
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
 --- !u!1 &1186999060 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2085997120671263391, guid: 41dd6f1b95892df43a67d31506651c78, type: 3}
@@ -3296,6 +3255,7 @@ GameObject:
   - component: {fileID: 1244263625}
   - component: {fileID: 1244263626}
   - component: {fileID: 1244263627}
+  - component: {fileID: 1244263628}
   m_Layer: 0
   m_Name: Third Person Player
   m_TagString: Player
@@ -3670,6 +3630,18 @@ MonoBehaviour:
     m_Bits: 64
   lockedOn: 0
   currentTarget: {fileID: 0}
+--- !u!114 &1244263628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244263618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3aa6a82a9314f541881f6658a47501e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagicAttack
 --- !u!1001 &1283090932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4338,6 +4310,7 @@ GameObject:
   - component: {fileID: 1968844690}
   - component: {fileID: 1968844691}
   - component: {fileID: 1968844692}
+  - component: {fileID: 1968844693}
   m_Layer: 6
   m_Name: Enemy test
   m_TagString: Untagged
@@ -4477,6 +4450,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FreezeTest
   elementData: {fileID: 11400000, guid: 4a1d2913c2ca26844ae8f58bf61acd02, type: 2}
+--- !u!54 &1968844693
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968844685}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4499,4 +4499,3 @@ SceneRoots:
   - {fileID: 1850773406}
   - {fileID: 1283090932}
   - {fileID: 192924374}
-  - {fileID: 1140721671}
