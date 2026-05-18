@@ -8,14 +8,20 @@ public class Explosive : MonoBehaviour
     public float damage = 50f;
     public float impactThreshold = 5f;
 
+    private bool hasExploded = false;
+
     void OnCollisionEnter(Collision collision)
     {
+        if (hasExploded) return;
+
         if (collision.relativeVelocity.magnitude >= impactThreshold)
             Explode();
     }
 
     void Explode()
     {
+        hasExploded = true;
+
         Instantiate(explosionEffect, transform.position, transform.rotation);
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
