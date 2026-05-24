@@ -6,7 +6,6 @@ public class ElementSO : ScriptableObject
     [Header("Information")]
     public string elementName;
     public Sprite icon;
-    public Color color;
 
     [Header("Damage")]
     public float baseDamage;
