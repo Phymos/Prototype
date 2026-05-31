@@ -2038,7 +2038,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2097,6 +2097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b9557f2dce06d4eb3bbf72b05c1077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DummyEnemy
+  renderers:
+  - {fileID: 692588717}
 --- !u!114 &692588721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2850,6 +2852,7 @@ GameObject:
   - component: {fileID: 974612098}
   - component: {fileID: 974612104}
   - component: {fileID: 974612105}
+  - component: {fileID: 974612106}
   m_Layer: 0
   m_Name: Third Person Camera
   m_TagString: Untagged
@@ -3130,6 +3133,30 @@ MonoBehaviour:
   Offset: {x: 0.75, y: 0.4, z: 0}
   ApplyAfter: 1
   PreserveComposition: 0
+--- !u!114 &974612106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974612097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseListener
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 0.5
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &1018450588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4697,6 +4724,7 @@ GameObject:
   - component: {fileID: 1244263627}
   - component: {fileID: 1244263628}
   - component: {fileID: 1244263629}
+  - component: {fileID: 1244263630}
   m_Layer: 0
   m_Name: Third Person Player
   m_TagString: Player
@@ -5110,6 +5138,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElementSwitcher
   elementMenuUI: {fileID: 255516870}
+--- !u!114 &1244263630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244263618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 1
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.1
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: 0.05, z: 0}
 --- !u!1001 &1283090932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10686,6 +10767,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b9557f2dce06d4eb3bbf72b05c1077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DummyEnemy
+  renderers:
+  - {fileID: 1703648099}
 --- !u!136 &1703648098
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10734,7 +10817,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 54602919f4c8ff64ea1c0084c31ad8b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10775,7 +10858,7 @@ Transform:
   m_GameObject: {fileID: 1703648094}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.44, y: 1.12, z: -1.32}
+  m_LocalPosition: {x: 17.44, y: 1.51, z: -1.32}
   m_LocalScale: {x: 1.6806, y: 1.6806, z: 1.6806}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11001,7 +11084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7ce6052a688ad4b972185922dd9d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordHitbox
-  hitEffect: {fileID: 970440554703164915, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
+  impulseSource: {fileID: 1244263630}
 --- !u!1001 &1831628215
 PrefabInstance:
   m_ObjectHideFlags: 0
