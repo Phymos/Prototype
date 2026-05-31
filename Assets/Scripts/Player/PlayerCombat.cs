@@ -175,6 +175,7 @@ public class PlayerCombat : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        isAttacking = false;
     }
 
     public void AllowNextAttack()

@@ -5040,8 +5040,6 @@ MonoBehaviour:
   lightAttackDamage: 20
   heavyAttackDamage: 40
   attackBufferTime: 0.3
-  attackTimer: 0.6
-  comboTimer: 0.75
   swordCollider: {fileID: 1820410452}
   alreadyHit: []
   isBlocking: 0
