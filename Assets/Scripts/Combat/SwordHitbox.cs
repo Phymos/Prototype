@@ -1,9 +1,12 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class SwordHitbox : MonoBehaviour
 {
     private PlayerCombat playerCombat;
     private PlayerCombatSfx playerCombatSfx;
+    [SerializeField] CinemachineImpulseSource impulseSource;
+
 
     void Start()
     {
@@ -23,7 +26,8 @@ public class SwordHitbox : MonoBehaviour
                 damageable.TakeDamage(playerCombat.lightAttackDamage);
                 playerCombat.alreadyHit.Add(other.gameObject);
                 playerCombatSfx.PlaySlashSound();
-                playerCombat.StartCoroutine(playerCombat.HitStop(0.1f));
+                impulseSource.GenerateImpulse();
+                playerCombat.StartCoroutine(playerCombat.HitStop(0.05f));
             }
         }
     }

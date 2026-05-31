@@ -11001,6 +11001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7ce6052a688ad4b972185922dd9d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordHitbox
+  hitEffect: {fileID: 970440554703164915, guid: 47096eff328e11a418ace7db2d72aa97, type: 3}
 --- !u!1001 &1831628215
 PrefabInstance:
   m_ObjectHideFlags: 0
