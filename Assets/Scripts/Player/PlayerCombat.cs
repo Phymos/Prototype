@@ -14,12 +14,10 @@ public class PlayerCombat : MonoBehaviour
     public float lightAttackDamage = 20f;
     public float heavyAttackDamage = 40f;
     public float attackBufferTime = 0.5f;
-    private float lastInputTime = -100f;
-    [SerializeField] float attackTimer = 0.5f;
-    [SerializeField] float comboTimer = 1f;
-    private float lastComboTime = 0f;
-    private float lastAttackTime = -100f;
     private int comboIndex = 0;
+
+    private bool canAttack = true;
+    private bool comboQueued = false;
 
     public Collider swordCollider;
     public List<GameObject> alreadyHit = new List<GameObject>();
@@ -46,17 +44,10 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - lastComboTime > comboTimer)
+        if (comboQueued && canAttack)
         {
-            comboIndex = 0;
-            OnLightAttacking?.Invoke(comboIndex);
-            isAttacking = false;
-        }
-
-        if (Time.time - lastInputTime <= attackBufferTime && Time.time - lastAttackTime >= attackTimer)
-        {
+            comboQueued = false;
             PerformLightAttack();
-            lastInputTime = -100f;
         }
     }
 
@@ -75,7 +66,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (!context.performed || !isArmed || thirdPersonController.onAir || thirdPersonController.isHardLanding || thirdPersonController.isRolling) return;
 
-        lastInputTime = Time.time;
+        comboQueued = true;
     }
 
     void OnHeavyAttack(InputAction.CallbackContext context)
@@ -122,8 +113,7 @@ public class PlayerCombat : MonoBehaviour
 
     void PerformLightAttack()
     {
-        lastAttackTime = Time.time;
-        lastComboTime = Time.time;
+        canAttack = false;
         comboIndex++;
 
         if (comboIndex > 3) comboIndex = 1;
@@ -185,5 +175,18 @@ public class PlayerCombat : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void AllowNextAttack()
+    {
+        canAttack = true;
+    }
+
+    public void ResetCombo()
+    {
+        canAttack = true;
+        comboQueued = false;
+        comboIndex = 0;
+        isAttacking = false;
     }
 }

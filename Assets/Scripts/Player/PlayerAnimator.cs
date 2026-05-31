@@ -57,7 +57,12 @@ public class PlayerAnimator : MonoBehaviour
     void PlayAttack(int comboIndex)
     {
         animator.SetInteger("ComboIndex", comboIndex);
-        animator.SetTrigger("LightAttack");
+        switch(comboIndex)
+        {
+            case 1: animator.CrossFadeInFixedTime("Attack 1", 0.1f, 0); break;
+            case 2: animator.CrossFadeInFixedTime("Attack 2", 0.1f, 0); break;
+            case 3: animator.CrossFadeInFixedTime("Attack 3", 0.1f, 0); break;
+        }
     }
 
     void PlayLanding() => animator.SetTrigger("IsLanding");
@@ -91,5 +96,15 @@ public class PlayerAnimator : MonoBehaviour
     public void DisableSword() 
     {
         if (combat != null) combat.DisableSword();
+    }
+
+    public void AllowNextAttack()
+    {
+        combat.AllowNextAttack();
+    }
+
+    public void ResetCombo()
+    {
+        combat.ResetCombo();
     }
 }
