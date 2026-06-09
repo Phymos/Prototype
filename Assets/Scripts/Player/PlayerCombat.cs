@@ -32,14 +32,12 @@ public class PlayerCombat : MonoBehaviour
     public ElementSO currentElement;
     
     public static event Action<int> OnLightAttacking;
-    private MagicAttack magicAttack;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         thirdPersonController = GetComponent<ThirdPersonController>();
         lockOnSystem = GetComponent<LockOnSystem>();
-        magicAttack = GetComponent<MagicAttack>();
     }
 
     void Update()
@@ -107,7 +105,7 @@ public class PlayerCombat : MonoBehaviour
             GameObject vfx = Instantiate(currentElement.attackVFX, spawnPos, transform.rotation);
             Destroy(vfx, 2f);
 
-            magicAttack.CastCone(10f, 60f, currentElement.baseDamage, 5f, enemyLayers);
+            currentElement.GetStrategy?.ExecuteMagic(transform, currentElement, enemyLayers);
         }
     }
 

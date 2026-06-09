@@ -19,4 +19,9 @@ public class ElementSO : ScriptableObject
     public GameObject attackVFX;
     public GameObject hitVFX;
     public AudioClip hitSFX;
+
+    [Header("Behavior (Strategy)")]
+    [SerializeField] ScriptableObject magicStrategy;
+
+    public IMagicStrategy GetStrategy => magicStrategy as IMagicStrategy;
 }
