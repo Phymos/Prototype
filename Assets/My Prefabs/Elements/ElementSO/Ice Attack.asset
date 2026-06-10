@@ -21,3 +21,4 @@ MonoBehaviour:
   attackVFX: {fileID: 3156866507962234106, guid: 645ebd7cef59b7b40b27c29bf3e99cf2, type: 3}
   hitVFX: {fileID: 9017484664307500583, guid: 4423ea0806f67b744a047ee167d4f915, type: 3}
   hitSFX: {fileID: 0}
+  magicStrategy: {fileID: 11400000, guid: 2cc82be0ca38c9e459a9449b9212b193, type: 2}

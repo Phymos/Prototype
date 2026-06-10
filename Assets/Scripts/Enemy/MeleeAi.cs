@@ -107,18 +107,18 @@ public class MeleeAi : MonoBehaviour
     {
         float x = Random.value;
 
-        if (x <= 0.5f)
+        if (x <= 0.5f)  // %50 saldır
         {
             currentState = EnemyState.Attack;
         }
-        else if (x <= 0.8f)
+        else if (x <= 0.8f)  // %30 strafe
         {
             strafeTimer = Random.Range(1.5f, 3f);
             strafeDirection = Random.value > 0.5f ? 1 : -1;
             
             currentState = EnemyState.Strafe;
         }
-        else
+        else  // %20 geri çekil
         {
             retreatTimer = Random.Range(2f, 4f);
             currentState = EnemyState.Retreat;
