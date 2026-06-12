@@ -14,10 +14,10 @@ public class PlayerCombat : MonoBehaviour
     public float lightAttackDamage = 20f;
     public float heavyAttackDamage = 40f;
     public float attackBufferTime = 0.5f;
-    private int comboIndex = 0;
+    public int comboIndex = 0;
 
     private bool canAttack = true;
-    private bool comboQueued = false;
+    public bool comboQueued = false;
 
     public Collider swordCollider;
     public List<GameObject> alreadyHit = new List<GameObject>();

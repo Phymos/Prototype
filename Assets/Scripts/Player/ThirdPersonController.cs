@@ -44,6 +44,8 @@ public class ThirdPersonController : MonoBehaviour
 
     public Vector3 currentVelocity => controller.velocity;
 
+    public Animator animator;
+
     //things to add:
     // crouch
     // roll
@@ -225,6 +227,7 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         isRolling = false;
+        playerCombat.ResetCombo();
     }
 
     IEnumerator ResetLanding()
